@@ -26,37 +26,29 @@ import Upgrade from "views/Upgrade.js";
 
 const dashboardRoutes = [
   {
-    upgrade: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-alien-33",
-    component: Upgrade,
-    layout: "/admin"
-  },
-  {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Home",
     icon: "nc-icon nc-chart-pie-35",
     component: Dashboard,
     layout: "/admin"
   },
   {
     path: "/user",
-    name: "User Profile",
+    name: "User Management",
     icon: "nc-icon nc-circle-09",
     component: UserProfile,
     layout: "/admin"
   },
   {
     path: "/table",
-    name: "Table List",
+    name: "Task Management",
     icon: "nc-icon nc-notes",
     component: TableList,
     layout: "/admin"
   },
   {
     path: "/typography",
-    name: "Typography",
+    name: "Admin",
     icon: "nc-icon nc-paper-2",
     component: Typography,
     layout: "/admin"
