@@ -46,33 +46,80 @@ function Sidebar({ color, image, routes }) {
             </div>
           </a>
           <a className="simple-text">
-            eRecruit
+            eRecruit CMS
           </a>
         </div>
         <Nav>
-          {routes.map((prop, key) => {
-            if (!prop.redirect)
-              return (
-                <li
-                  className={
-                    prop.upgrade
+          <li className={
+                    false
                       ? "active active-pro"
-                      : activeRoute(prop.layout + prop.path)
-                  }
-                  key={key}
-                >
-                  <NavLink
-                    to={prop.layout + prop.path}
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    <i className={prop.icon} />
-                    <p>{prop.name}</p>
-                  </NavLink>
-                </li>
-              );
-            return null;
-          })}
+                      : activeRoute('/admin/dashboard')
+                  }>
+            <NavLink
+              to={'/admin/dashboard'}
+              className="nav-link"
+              activeClassName="active"
+            >
+              <i className={'nc-icon nc-app'} />
+              <p>Home</p>
+            </NavLink>
+          </li>
+          <li className={
+                    false
+                      ? "active active-pro"
+                      : activeRoute('/admin/master')
+                  }>
+            <NavLink
+              to={'/admin/master'}
+              className="nav-link"
+              activeClassName="active"
+            >
+              <i className={'nc-icon nc-settings-gear-64'} />
+              <p>Master Management</p>
+            </NavLink>
+          </li>
+          <li className={
+                    false
+                      ? "active active-pro"
+                      : activeRoute('/admin/kandidat')
+                  }>
+            <NavLink
+              to={'/admin/kandidat'}
+              className="nav-link"
+              activeClassName="active"
+            >
+              <i className={'nc-icon nc-single-02'} />
+              <p>Kandidat Management</p>
+            </NavLink>
+          </li>
+          <li className={
+                    false
+                      ? "active active-pro"
+                      : activeRoute('/admin/modul')
+                  }>
+            <NavLink
+              to={'/admin/modul'}
+              className="nav-link"
+              activeClassName="active"
+            >
+              <i className={'nc-icon nc-ruler-pencil'} />
+              <p>Modul Management</p>
+            </NavLink>
+          </li>
+          <li className={
+                    false
+                      ? "active active-pro"
+                      : activeRoute('/admin/icons')
+                  }>
+            <NavLink
+              to={'/admin/icons'}
+              className="nav-link"
+              activeClassName="active"
+            >
+              <i className={'nc-icon nc-circle-09'} />
+              <p>Icon</p>
+            </NavLink>
+          </li>
         </Nav>
       </div>
     </div>
