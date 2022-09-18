@@ -28,7 +28,7 @@ function Sidebar({ color, image, routes }) {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   return (
-    <div className="sidebar" data-image={image} data-color={color}>
+    <div className="sidebar" style={{backgroundColor:'#4976BA !important'}}>
       <div
         className="sidebar-background"
         style={{
@@ -36,18 +36,19 @@ function Sidebar({ color, image, routes }) {
         }}
       />
       <div className="sidebar-wrapper">
-        <div className="logo d-flex align-items-center justify-content-start">
+        <div className="logo d-flex align-items-center justify-content-start" style={{backgroundColor: 'white'}}>
           <a
-            href="https://www.creative-tim.com?ref=lbd-sidebar"
-            className="simple-text logo-mini mx-1"
+            // href="https://www.creative-tim.com?ref=lbd-sidebar"
+            className="simple-text logo-mini" style={{justifyContent:'center', width: '100%'}}
           >
-            <div className="logo-img">
-              <img src={require("assets/img/reactlogo.png")} alt="..." />
+            <div className="logo-img" style={{display: 'inline-flex'}}>
+              <img src={require("assets/img/Logo.png")} alt="..." />
+              <a className="simple-text" style={{color: '#4976BA', fontWeight: '600', float: 'right', marginLeft: '5px'}}>
+                CMS
+              </a>
             </div>
           </a>
-          <a className="simple-text">
-            eRecruit CMS
-          </a>
+          
         </div>
         <Nav>
           <li className={

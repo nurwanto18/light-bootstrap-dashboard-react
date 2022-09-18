@@ -42,6 +42,7 @@ const columns = [
       const onClick = (e) => {
         e.stopPropagation(); // don't select this row after clicking
 
+
         api
           .getAllColumns()
           .filter((c) => c.field !== "__check__" && !!c)
@@ -63,6 +64,7 @@ const columns = [
     renderCell: (params) => {
       const onClick = (e) => {
         e.stopPropagation(); // don't select this row after clicking
+
 
         api
           .getAllColumns()
@@ -86,6 +88,7 @@ const columns = [
       const onClick = (e) => {
         e.stopPropagation(); // don't select this row after clicking
 
+
         api
           .getAllColumns()
           .filter((c) => c.field !== "__check__" && !!c)
@@ -105,11 +108,9 @@ const rows = [
   { id: 2, lastName: 'Luke', firstName: 'Sam', createdDate: '22-02-2022'},
   { id: 3, lastName: 'Hong', firstName: 'Wan', createdDate: '13-08-2022'},
   { id: 4, lastName: 'Ha', firstName: 'Steve', createdDate: '05-10-2022'},
-  { id: 5, lastName: 'Sophie', firstName: 'Yan', createdDate: '05-10-2022'},
-  { id: 6, lastName: 'Chan', firstName: 'Hitomi', createdDate: '05-10-2022'},
 ];
 
-function Kandidat() {
+function MasterManagement() {
   return (
     <>
       <Container fluid>
@@ -117,14 +118,17 @@ function Kandidat() {
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
-                {/* <Card.Title as="h3">Master Management</Card.Title> */}
+                <Card.Title as="h4">Master Management</Card.Title>
+                <p className="card-category">
+                  Filter can be here!
+                </p>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
               <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
                   rows={rows}
                   columns={columns}
-                  pageSize={10}
+                  pageSize={5}
                   rowsPerPageOptions={[5]}
                 />
               </div>
@@ -138,4 +142,4 @@ function Kandidat() {
   );
 }
 
-export default Kandidat;
+export default MasterManagement;

@@ -22,6 +22,8 @@ import Typography from "views/Typography.js";
 import Icons from "views/Icons.js";
 import Notifications from "views/Notifications.js";
 import Kandidat from "views/Kandidat";
+import MasterManagement from "views/MasterManagement";
+import ModulManagement from "views/ModulManagement";
 
 const dashboardRoutes = [
   {
@@ -43,6 +45,20 @@ const dashboardRoutes = [
     name: "Kandidat",
     icon: "nc-icon nc-circle-09",
     component: Kandidat,
+    layout: "/admin"
+  },
+  {
+    path: "/master",
+    name: "Master",
+    icon: "nc-icon nc-circle-09",
+    component: MasterManagement,
+    layout: "/admin"
+  },
+  {
+    path: "/modul",
+    name: "Modul",
+    icon: "nc-icon nc-circle-09",
+    component: ModulManagement,
     layout: "/admin"
   },
   {

@@ -1,5 +1,5 @@
 .footer{
-    background-color: $white-color;
+    background-color: #ffffff;
 
     .footer-menu{
         height: 41px;
@@ -12,7 +12,7 @@
         font-weight: normal;
 
         a:not(.btn){
-            color: $dark-gray;
+            color: #4976BA;
             display: block;
             margin-bottom: 3px;
             &:hover,
@@ -28,7 +28,7 @@
         }
     }
     .social-area > a:not(.btn){
-       color: $dark-gray;
+       color: #4976BA;
        display: inline-block;
        vertical-align: top;
        padding: $padding-social-a;
@@ -42,7 +42,7 @@
        }
     }
     .copyright{
-        color: $default-states-color;
+        color: #4976BA;
         padding: 10px 15px;
         margin: 10px 3px;
         line-height: 20px;
