@@ -136,10 +136,10 @@ function Kandidat() {
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                   <TableHead>
-                    <TableRow sx={{backgroundColor: '#4976BA'}}>
-                      <TableCell>Dessert (100g serving)</TableCell>
-                      <TableCell align="right">Calories</TableCell>
-                      <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                    <TableRow sx={{backgroundColor: '#4976BA', fontWeight: 'bold !important'}}>
+                      <TableCell>Dessert</TableCell>
+                      <TableCell>Calories</TableCell>
+                      <TableCell>Fat&nbsp;(g)</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -151,10 +151,10 @@ function Kandidat() {
                         <TableCell component="th" scope="row">
                           {row.name}
                         </TableCell>
-                        <TableCell style={{ width: 160 }} align="right">
+                        <TableCell>
                           {row.calories}
                         </TableCell>
-                        <TableCell style={{ width: 160 }} align="right">
+                        <TableCell>
                           {row.fat}
                         </TableCell>
                       </TableRow>
