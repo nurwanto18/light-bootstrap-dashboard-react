@@ -1,115 +1,127 @@
 import React from "react";
-import { DataGrid, GridApi, GridCellValue} from '@mui/x-data-grid';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-// react-bootstrap components
+import PropTypes from 'prop-types';
 import {
-  Badge,
-  Button,
   Card,
-  Navbar,
-  Nav,
-  Table,
   Container,
   Row,
   Col,
 } from "react-bootstrap";
+import { Paper, Box, IconButton, Table, TableBody, TableCell, TableContainer, TableFooter, TablePagination, TableRow, TableHead } from "@mui/material";
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import { useTheme } from '@mui/material/styles';
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  {
-    field: 'fullName',
-    headerName: 'Candidate name',
-    sortable: true,
-    width: 200,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-  {
-    field: 'createdDate',
-    headerName: 'Created Date',
-    sortable: true,
-    width: 200
-  },
-  {
-    field: "actionDetail",
-    headerName: "",
-    sortable: false,
-    filterable: false,
-    width: 30,
-    renderCell: (params) => {
-      const onClick = (e) => {
-        e.stopPropagation(); // don't select this row after clicking
+function TablePaginationActions(props) {
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onPageChange } = props;
 
-        api
-          .getAllColumns()
-          .filter((c) => c.field !== "__check__" && !!c)
-          .forEach(
-            (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-          );
+  const handleFirstPageButtonClick = (event) => {
+    onPageChange(event, 0);
+  };
 
-        return alert(JSON.stringify(thisRow, null, 4));
-      };
-      return <SearchOutlinedIcon onClick={onClick}>Click</SearchOutlinedIcon>;
-    }
-  },
-  {
-    field: "actionEdit",
-    headerName: "",
-    sortable: false,
-    filterable: false,
-    width: 30,
-    renderCell: (params) => {
-      const onClick = (e) => {
-        e.stopPropagation(); // don't select this row after clicking
+  const handleBackButtonClick = (event) => {
+    onPageChange(event, page - 1);
+  };
 
-        api
-          .getAllColumns()
-          .filter((c) => c.field !== "__check__" && !!c)
-          .forEach(
-            (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-          );
+  const handleNextButtonClick = (event) => {
+    onPageChange(event, page + 1);
+  };
 
-        return alert(JSON.stringify(thisRow, null, 4));
-      };
-      return <EditOutlinedIcon onClick={onClick}>Click</EditOutlinedIcon>;
-    }
-  },
-  {
-    field: "actionDelete",
-    headerName: "",
-    sortable: false,
-    filterable: false,
-    width: 30,
-    renderCell: (params) => {
-      const onClick = (e) => {
-        e.stopPropagation(); // don't select this row after clicking
+  const handleLastPageButtonClick = (event) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
 
-        api
-          .getAllColumns()
-          .filter((c) => c.field !== "__check__" && !!c)
-          .forEach(
-            (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-          );
+  return (
+    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+      </IconButton>
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+      </IconButton>
+    </Box>
+  );
+}
 
-        return alert(JSON.stringify(thisRow, null, 4));
-      };
-      return <DeleteOutlineOutlinedIcon onClick={onClick}>Click</DeleteOutlineOutlinedIcon>;
-    }
-  }
-];
+TablePaginationActions.propTypes = {
+  count: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+};
+
+function createData(name, calories, fat) {
+  return { name, calories, fat };
+}
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', createdDate: '19-10-2022'},
-  { id: 2, lastName: 'Luke', firstName: 'Sam', createdDate: '22-02-2022'},
-  { id: 3, lastName: 'Hong', firstName: 'Wan', createdDate: '13-08-2022'},
-  { id: 4, lastName: 'Ha', firstName: 'Steve', createdDate: '05-10-2022'},
-  { id: 5, lastName: 'Sophie', firstName: 'Yan', createdDate: '05-10-2022'},
-  { id: 6, lastName: 'Chan', firstName: 'Hitomi', createdDate: '05-10-2022'},
-];
+  createData('Cupcake', 305, 3.7),
+  createData('Donut', 452, 25.0),
+  createData('Eclair', 262, 16.0),
+  createData('Frozen yoghurt', 159, 6.0),
+  createData('Gingerbread', 356, 16.0),
+  createData('Honeycomb', 408, 3.2),
+  createData('Ice cream sandwich', 237, 9.0),
+  createData('Jelly Bean', 375, 0.0),
+  createData('KitKat', 518, 26.0),
+  createData('Lollipop', 392, 0.2),
+  createData('Marshmallow', 318, 0),
+  createData('Nougat', 360, 19.0),
+  createData('Oreo', 437, 18.0),
+].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+
+function stableSort(array, comparator) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
 
 function Kandidat() {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
   return (
     <>
       <Container fluid>
@@ -117,17 +129,66 @@ function Kandidat() {
           <Col md="12">
             <Card className="strpied-tabled-with-hover">
               <Card.Header>
-                {/* <Card.Title as="h3">Master Management</Card.Title> */}
+                <Card.Title as="h3">Kandidat</Card.Title>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
-              <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
-                  rows={rows}
-                  columns={columns}
-                  pageSize={10}
-                  rowsPerPageOptions={[5]}
-                />
-              </div>
+              {/* <div style={{  width: '100%' }}> */}
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                  <TableHead>
+                    <TableRow sx={{backgroundColor: '#4976BA'}}>
+                      <TableCell>Dessert (100g serving)</TableCell>
+                      <TableCell align="right">Calories</TableCell>
+                      <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {(rowsPerPage > 0
+                      ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      : rows
+                    ).map((row) => (
+                      <TableRow key={row.name}>
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell style={{ width: 160 }} align="right">
+                          {row.calories}
+                        </TableCell>
+                        <TableCell style={{ width: 160 }} align="right">
+                          {row.fat}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+
+                    {emptyRows > 0 && (
+                      <TableRow style={{ height: 53 * emptyRows }}>
+                        <TableCell colSpan={6} />
+                      </TableRow>
+                    )}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      <TablePagination
+                        rowsPerPageOptions={[5, { label: 'All', value: -1 }]}
+                        colSpan={3}
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        SelectProps={{
+                          inputProps: {
+                            'aria-label': 'rows per page',
+                          },
+                          native: true,
+                        }}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        ActionsComponent={TablePaginationActions}
+                      />
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </TableContainer>
+              {/* </div> */}
               </Card.Body>
             </Card>
           </Col>

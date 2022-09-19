@@ -21,7 +21,7 @@ import { Container } from "react-bootstrap";
 class Footer extends Component {
   render() {
     return (
-      <div className="footer px-0 px-lg-3" style={{backgroundColor: '#4976BA !important', position: 'fixed', bottom: 0, width: '100%'}}>
+      <div className="footer px-0 px-lg-3" style={{backgroundColor: '#4976BA !important',  width: '100%'}}>
         <Container fluid>
             <p className="copyright">
               2022 © Axa Financial Indonesia. All rights reserved
