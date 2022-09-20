@@ -12,7 +12,7 @@
     .navbar-nav .nav-item.show .dropdown-menu, .dropdown.show .dropdown-menu{
         @include transform-scale(1);
         @include transform-origin($dropdown-coordinates);
-
+        
     }
 
     .footer{
@@ -25,9 +25,9 @@
         }
     }
     .navbar-nav .nav-item .dropdown-menu:before{
-        border-bottom: 11px solid rgba(0, 0, 0, 0.2);
-        border-left: 11px solid rgba(0, 0, 0, 0);
-        border-right: 11px solid rgba(0, 0, 0, 0);
+        // border-bottom: 11px solid rgba(0, 0, 0, 0.2);
+        // border-left: 11px solid rgba(0, 0, 0, 0);
+        // border-right: 11px solid rgba(0, 0, 0, 0);
         content: "";
         display: inline-block;
         position: absolute;
@@ -35,14 +35,15 @@
         top: -11px;
     }
     .navbar-nav .nav-item .dropdown-menu:after {
-        border-bottom: 11px solid #FFFFFF;
-        border-left: 11px solid rgba(0, 0, 0, 0);
-        border-right: 11px solid rgba(0, 0, 0, 0);
+        // border-bottom: 11px solid #FFFFFF;
+        // border-left: 11px solid rgba(0, 0, 0, 0);
+        // border-right: 11px solid rgba(0, 0, 0, 0);
         content: "";
         display: inline-block;
         position: absolute;
         left: 12px;
         top: -10px;
+        margin-right: 100px !important;
     }
 
     .navbar-nav.navbar-right .nav-item .dropdown-menu:before{
